@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+<!-- search_results.html -->
+<!-- <form method="GET" action="{% url 'search' %}">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search for tweets..." />
+    <button type="submit">Search</button>
+</form> -->
+
+{% block title %}
+Search Rrsults
+{% endblock %}
+
+{% block content %}
+{% if tweet %}
+<h1 class="text-xl-center m-4 text-success">Search Result Found</h1>
+<br />
+<div class="container row gap-2">
+  {% for tweets in tweet %}
+  <div class="card p-4 m-3" style="width: 18rem;">
+  <img src="{{ tweets.photo.url }}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{tweets.user.username}}
+    </h5>
+    <p class="card-text">{{tweets.text}}</p>
+    {% if tweets.user == user %}
+    <a href="{% url 'edit' tweets.id %}" class="btn btn-outline-primary">Edit</a>
+    <a href="{% url 'delete' tweets.id %}" class="btn btn-outline-danger">Delete</a>
+    {% endif %}
+  </div>
+</div>
+  {% endfor %}
+</div>
+{% else %}
+<h2>Not Found</h2>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tweet Register
+{% endblock %}
+
+{% block content %}
+<div class="d-grid">
+<form method="post" enctype="multipart/form-data" class="form text-center m-3">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-outline-warning" type="submit">Register</button>
+</form>
+<a class="text-center text-info link-underline-dark mt-4" href="{% url 'login' %}">Login here</a>
+</div>
+{% endblock %}
